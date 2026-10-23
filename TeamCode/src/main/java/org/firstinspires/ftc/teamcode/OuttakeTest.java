@@ -31,7 +31,6 @@ public class OuttakeTest extends OpMode {
 
     @Override
     public void loop(){
-        shooter.setVelocity(velocity);
 
         if (gamepad2.dpad_right){
             velocity = 1000;
