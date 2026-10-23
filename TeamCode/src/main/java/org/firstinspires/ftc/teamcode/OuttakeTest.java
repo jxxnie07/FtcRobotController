@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
+
 @TeleOp (name = "Outtake Test", group = "Test")
 
 /*
@@ -25,12 +27,14 @@ public class OuttakeTest extends OpMode {
 
         shooter = hardwareMap.get(DcMotorEx.class, "s");
         shooter.setDirection(DcMotorEx.Direction.FORWARD); // Either FORWARD or REVERSE
-        shooter.setVelocityPIDFCoefficients(0.01, 5, 10, 0);
+        shooter.setVelocityPIDFCoefficients(2, 0, 0, 12);
 
     }
 
     @Override
     public void loop(){
+
+        shooter.setVelocity(velocity);
 
         if (gamepad2.dpad_right){
             velocity = 1000;
@@ -45,7 +49,7 @@ public class OuttakeTest extends OpMode {
 
         telemetry.addData("Current Velocity", shooter.getVelocity());
         telemetry.addData("Target Velocity", velocity);
-        telemetry.addData("Set Power", shooter.getPower());
+        telemetry.addData("Current Power", shooter.getPower());
         telemetry.update();
     }
 }
